@@ -1,0 +1,30 @@
+OASISFormat: 0.4
+Name: ollvm
+Version: 1.0
+Synopsis: ollvm library offers an interface to manipulate LLVM IR in pure OCaml.
+Authors: Julien Sagot
+License: LGPL-2.1 with OCaml linking exception
+LicenseFile: COPYING
+BuildTools: ocamlbuild
+Plugins: META (0.3), DevFiles (0.3)
+AlphaFeatures: compiled_setup_ml
+
+Library "ollvm"
+  Path: src/ollvm
+  Modules:
+    Ollvm_ast,
+    Ollvm_ez,
+    Ollvm_lexer,
+    Ollvm,
+    Ollvm_parser,
+    Ollvm_printer
+
+Library "ollvm_llvmgateway"
+  FindlibParent: ollvm
+  FindlibName: gateway
+  Path: src/ollvm_llvmgateway
+  Modules:
+    Ollvm_llvmgateway
+  BuildDepends:
+    ollvm,
+    llvm
